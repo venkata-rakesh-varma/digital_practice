@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Community Event Portal</h1>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="help.html" target="_blank">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div id="welcomeBanner">
+                Welcome, Valued Resident! 
+                <span style="color: red; font-weight: bold;">Special Offer: Register today and get a 10% discount!</span>
+            </div>
+            <p>This is the portal for all local community events. <span class="highlight">Check out the upcoming events!</span></p>
+        </section>
+
+        <section id="events">
+            <h2>Past Events Gallery</h2>
+            <table>
+                <caption>A collection of photos from our recent community gatherings.</caption>
+                <tr>
+                    <td>
+                        <img src="https://tualatinlife.com/new/wp-content/uploads/2025/04/riverpark-cio.jpg" alt="Community fair" title="Annual Community Fair" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Annual Community Fair</p>
+                    </td>
+                    <td>
+                        <img src="https://ogden_images.s3.amazonaws.com/www.lockhaven.com/images/2025/05/05155823/lock-haven-concert-series-649x840.jpg" alt="Summer concert" title="Summer Concert Series" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Summer Concert Series</p>
+                    </td>
+                    <td>
+                        <img src="https://www.eventbookings.com/wp-content/uploads/2025/12/A-Complete-Guide-to-Organise-a-Charity-5K-or-Fun-Run-1.jpg" alt="Charity run" title="5K Charity Run" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>5K Charity Run</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <section>
+            <h2>Video Invitation</h2>
+            <video controls width="500" oncanplay="videoReady()">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p id="videoStatus"></p>
+        </section>
+
+        <section id="register">
+            <h2>Event Registration</h2>
+            <form id="eventForm" onsubmit="return showConfirmation()">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="e.g., John Doe" required autofocus>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="e.g., john.doe@example.com" required>
+
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" onblur="validatePhone()">
+
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" required>
+
+                <label for="eventType">Event Type:</label>
+                <select id="eventType" name="eventType" onchange="displayFee()">
+                    <option value="fair">Community Fair ($10)</option>
+                    <option value="concert">Summer Concert ($25)</option>
+                    <option value="run">5K Charity Run ($30)</option>
+                </select>
+                <p>Event Fee: <output id="eventFee" for="eventType">$10</output></p>
+
+                <label for="message">Feedback Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Any special requests?" onkeyup="countChars()"></textarea>
+                <p>Character Count: <span id="charCount">0</span></p>
+
+                <button type="submit">Register</button>
+                <output name="confirmation" id="confirmationMessage"></output>
+            </form>
+        </section>
+
+        <section>
+            <h2>User Preferences</h2>
+            <button id="clearPrefs">Clear Saved Preferences</button>
+        </section>
+
+        <section id="contact">
+            <h2>Find Events Near You</h2>
+            <button id="findEvents">Find Nearby Events</button>
+            <p id="geoStatus"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Local Community Council. All rights reserved.</p>
+    </footer>
+
+    <script>
+        console.log("Page script loaded.");
+
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+            if (!phonePattern.test(phoneInput.value) && phoneInput.value !== '') {
+                alert('Please enter a valid phone number in the format 123-456-7890.');
+            }
+            console.log('Phone field blurred. Validation checked.');
+        }
+
+        function displayFee() {
+            const eventType = document.getElementById('eventType').value;
+            const fees = { fair: '$10', concert: '$25', run: '$30' };
+            document.getElementById('eventFee').value = fees[eventType];
+            console.log(`Event type changed to: ${eventType}`);
+        }
+
+        function showConfirmation() {
+            const name = document.getElementById('name').value;
+            const confirmationMsg = document.getElementById('confirmationMessage');
+            confirmationMsg.value = `Thank you, ${name}! Your registration is confirmed.`;
+            console.log('Form submitted. Confirmation shown.');
+            return false;
+        }
+
+        function enlargeImage(img) {
+            const isEnlarged = img.style.transform === 'scale(1.5)';
+            img.style.transform = isEnlarged ? 'scale(1.0)' : 'scale(1.5)';
+            console.log(`Image dblclicked. Enlarged: ${!isEnlarged}`);
+        }
+
+        function countChars() {
+            const messageLength = document.getElementById('message').value.length;
+            document.getElementById('charCount').textContent = messageLength;
+        }
+
+        function videoReady() {
+            document.getElementById('videoStatus').textContent = "Video is ready to play.";
+            console.log('Video can play now.');
+        }
+
+        window.onbeforeunload = function() {
+            const message = document.getElementById('message').value;
+            if (message.length > 0) {
+                return "You have unsaved changes in the form. Are you sure you want to leave?";
+            }
+        };
+
+        const eventTypeSelect = document.getElementById('eventType');
+        const clearPrefsButton = document.getElementById('clearPrefs');
+
+        eventTypeSelect.addEventListener('change', () => {
+            localStorage.setItem('preferredEvent', eventTypeSelect.value);
+            console.log(`Saved preference to localStorage: ${eventTypeSelect.value}`);
+        });
+
+        window.addEventListener('load', () => {
+            const savedEvent = localStorage.getItem('preferredEvent');
+            if (savedEvent) {
+                eventTypeSelect.value = savedEvent;
+                displayFee();
+                console.log(`Loaded preference from localStorage: ${savedEvent}`);
+            }
+        });
+
+        clearPrefsButton.addEventListener('click', () => {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert('Your preferences have been cleared.');
+            console.log('localStorage and sessionStorage cleared.');
+        });
+
+        document.getElementById('findEvents').addEventListener('click', () => {
+            const status = document.getElementById('geoStatus');
+            status.textContent = 'Locating…';
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    status.textContent = `Your coordinates: Latitude ${latitude.toFixed(4)}, Longitude ${longitude.toFixed(4)}`;
+                    console.log('Geolocation success:', position);
+                },
+                (error) => {
+                    let errorMessage = 'An unknown error occurred.';
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = 'Permission for Geolocation was denied.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = 'The request to get user location timed out.';
+                            break;
+                    }
+                    status.textContent = `Error: ${errorMessage}`;
+                    console.error('Geolocation error:', error);
+                },
+                options
+            );
+        });
+    </script>
+
+</body>
+</html>
