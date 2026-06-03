@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap 5 Exercises</title>
+    
+    <!-- Exercise 1.1: Link Bootstrap 5 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Exercise 17.1: Install and use Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <style>
+        /* Minor custom styles to make boundaries visible for grid exercises */
+        .demo-box { background-color: #e9ecef; border: 1px solid #dee2e6; padding: 15px; text-align: center; }
+        body { padding-bottom: 80px; } /* Space for fixed footer */
+    </style>
+</head>
+<body class="bg-light">
+
+    <!-- Exercise 10.1 & 6.1: Responsive navbar with logo, links, search form, and d-flex -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="bi bi-bootstrap-fill"></i> BootExercises</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll d-flex flex-column flex-md-row">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#typography">Typography</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#forms">Forms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#components">Components</a></li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container mt-4">
+        
+        <!-- Exercise 7.1 & 7.2: Typography Utilities -->
+        <section id="typography" class="mb-5 p-4 bg-white shadow-sm rounded">
+            <h1 class="display-1 text-uppercase">Typography</h1>
+            <p class="lead text-muted fw-bold text-capitalize">This is a lead paragraph demonstrating text-muted, fw-bold, and text-capitalize utilities.</p>
+        </section>
+
+        <!-- Exercise 13.1 & 13.2: Colors and Backgrounds (Dashboard Page concept) -->
+        <section class="mb-5 p-4 bg-dark bg-gradient text-white rounded shadow">
+            <h2>Dashboard Header <span class="badge bg-warning text-dark">Pro</span></h2>
+            <p>Using bg-dark, bg-gradient, and text-white classes.</p>
+        </section>
+
+        <!-- Exercise 4.1: Sidebar Layout -->
+        <div class="row mb-5">
+            <!-- Exercise 14.1 & 14.2: Display Utilities (Sidebar hidden on mobile, visible on md+) -->
+            <aside class="col-md-3 d-none d-md-block bg-white p-3 border rounded">
+                <h5>Responsive Sidebar</h5>
+                <p class="text-muted">I only show up on tablets and above (d-none d-md-block).</p>
+                <!-- Exercise 10.2: Nav pills -->
+                <ul class="nav nav-pills flex-column">
+                    <li class="nav-item"><a class="nav-link active" href="#">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Profile</a></li>
+                </ul>
+            </aside>
+
+            <main class="col-12 col-md-9">
+                
+                <!-- Exercise 3.1 & 3.2: Responsive Grid (Stack on mobile, 2 on tablet, 3 on desktop) -->
+                <h3 class="mb-3">Responsive Grid (Mobile 1, Tab 2, Desk 3)</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-12 col-md-6 col-lg-4"><div class="demo-box">Col 1</div></div>
+                    <div class="col-12 col-md-6 col-lg-4"><div class="demo-box">Col 2</div></div>
+                    <div class="col-12 col-md-6 col-lg-4"><div class="demo-box">Col 3</div></div>
+                </div>
+
+                <!-- Exercise 4.2: Four-column layout equal width -->
+                <h3 class="mb-3">Four Equal Columns</h3>
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-3"><div class="demo-box">1</div></div>
+                    <div class="col-sm-3"><div class="demo-box">2</div></div>
+                    <div class="col-sm-3"><div class="demo-box">3</div></div>
+                    <div class="col-sm-3"><div class="demo-box">4</div></div>
+                </div>
+
+                <!-- Exercise 5.1 & 5.2: Alignment and Reordering -->
+                <h3 class="mb-3">Centering & Reordering</h3>
+                <div class="row justify-content-center align-items-center mb-4 border py-4 bg-white" style="height: 150px;">
+                    <div class="col-4 order-md-2"><div class="demo-box bg-warning">I am first in HTML, but order-md-2 pushes me right on desktop.</div></div>
+                    <div class="col-4 order-md-1"><div class="demo-box bg-info">I am second in HTML, but order-md-1 pulls me left on desktop.</div></div>
+                </div>
+
+            </main>
+        </div>
+
+        <!-- Forms Section -->
+        <section id="forms" class="row mb-5">
+            <div class="col-md-6">
+                <!-- Exercise 8.1: Registration Form -->
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">Registration Form</div>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Username</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">@</span>
+                                    <input type="text" class="form-control" placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="terms">
+                                <label class="form-check-label" for="terms">Agree to terms</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Register</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <!-- Exercise 8.2: Form Floating (Login Form) -->
+                <div class="card shadow-sm mt-3 mt-md-0">
+                    <div class="card-header bg-secondary text-white">Login Form</div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                                <label for="floatingInput">Email address</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Login</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Components Section -->
+        <section id="components" class="mb-5">
+            
+            <!-- Exercise 9.1 & 9.2: Buttons, Groups, and Icon buttons -->
+            <div class="mb-4 bg-white p-3 rounded shadow-sm">
+                <h3 class="mb-3">Buttons</h3>
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-outline-danger">Outline Danger</button>
+                
+                <!-- Exercise 17.2: Icon-only buttons -->
+                <button class="btn btn-info text-white"><i class="bi bi-download"></i></button>
+                
+                <div class="btn-group ms-3" role="group">
+                    <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck1">Toggle 1</label>
+                  
+                    <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btncheck2">Toggle 2</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- Exercise 11.1 & 15.1 & 15.2: Profile Card with Borders, Shadows, Rounded corners -->
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-lg text-center p-3 rounded-4">
+                        <!-- Positioning relative to overlay badge -->
+                        <!-- Exercise 16.2: Position absolute badge over image -->
+                        <div class="position-relative d-inline-block mx-auto mt-3">
+                            <img src="https://via.placeholder.com/150" class="card-img-top rounded-circle border border-primary border-3" alt="Profile" style="width: 150px; height: 150px;">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                99+
+                            </span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">John Doe</h5>
+                            <p class="card-text text-muted">Software Engineer</p>
+                            
+                            <!-- Exercise 18.1: Modal Trigger -->
+                            <button type="button" class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#profileModal">
+                                View Full Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exercise 18.2: Collapsible Accordion -->
+                <div class="col-md-8">
+                    <div class="accordion shadow-sm" id="accordionExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    Accordion Item #1
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the first item's accordion body.</strong> It is shown by default.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Accordion Item #2
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <strong>This is the second item's accordion body.</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Exercise 12.1 & 12.2: Spacing utilities (Pricing Section mock) -->
+                    <div class="m-3 mt-4 p-4 py-5 bg-white rounded shadow-sm text-center">
+                        <h4>Pricing Tier</h4>
+                        <p class="display-4">$49<span class="fs-5 text-muted">/mo</span></p>
+                        <button class="btn btn-success px-5 py-2">Get Started</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Exercise 11.2: Media Object Layout (Using Flexbox utilities) -->
+            <div class="d-flex align-items-center bg-white p-3 rounded shadow-sm mt-4">
+                <img src="https://via.placeholder.com/64" class="me-3 rounded" alt="Media Image">
+                <div>
+                    <h5 class="mt-0 mb-1">Media Object Layout</h5>
+                    <p class="mb-0 text-muted">A media object created using d-flex, align-items-center, and margin utilities (me-3).</p>
+                </div>
+            </div>
+
+        </section>
+        
+        <!-- 
+            Exercise 19.1 & 19.2: Customization with Sass 
+            Note: HTML files directly run in browsers cannot compile Sass natively. 
+            To do this locally:
+            1. Run `npm init -y` and `npm install bootstrap sass`
+            2. Create a custom.scss file:
+                $primary: #ff5733; 
+                $border-radius: 2rem;
+                @import "node_modules/bootstrap/scss/bootstrap";
+            3. Compile via command line: `npx sass custom.scss style.css`
+            4. Link the generated style.css instead of the CDN link above.
+        -->
+
+    </div>
+
+    <!-- Exercise 18.1: Modal Popup Component -->
+    <div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="profileModalLabel">Full Profile Info</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Here is more information about John Doe...</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Exercise 16.1 & 17.1: Fixed Footer with Social Icons -->
+    <footer class="bg-dark text-white text-center p-3 position-fixed bottom-0 w-100">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span>&copy; 2026 Learning Bootstrap 5</span>
+            <div>
+                <a href="#" class="text-white me-3 fs-5"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="text-white me-3 fs-5"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="text-white fs-5"><i class="bi bi-github"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Exercise 2.2 & 18: JS Plugins Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
