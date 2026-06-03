@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Community Event Portal</title>
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        nav ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        section {
+            padding: 20px;
+            margin: 0 20px;
+            background: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* 3. Welcome Message Styling */
+        #welcomeBanner {
+            background-color: lightblue;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-weight: bold;
+        }
+
+        /* 4. Image Gallery Styling */
+        .event-image {
+            border: 2px solid #ccc;
+            padding: 5px;
+            width: 200px;
+            height: auto;
+            transition: transform 0.2s;
+        }
+
+        .event-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* 5. Form Styling */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input, form select, form textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background: #333;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        form button:hover {
+            background: #555;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Community Event Portal</h1>
+        <!-- 1. Navigation Section -->
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#register">Register</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- 2. Link to external document -->
+                <li><a href="help.html" target="_blank">Help</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. Main Content Section -->
+    <main>
+        <!-- 3. Welcome Message -->
+        <section id="home">
+            <div id="welcomeBanner">
+                Welcome, Valued Resident! 
+                <!-- Inline style for a special offer -->
+                <span style="color: red; font-weight: bold;">Special Offer: Register today and get a 10% discount!</span>
+            </div>
+            <p>This is the portal for all local community events. <span class="highlight">Check out the upcoming events!</span></p>
+        </section>
+
+        <!-- 4. Image Gallery -->
+        <section id="events">
+            <h2>Past Events Gallery</h2>
+            <table>
+                <caption>A collection of photos from our recent community gatherings.</caption>
+                <tr>
+                    <td>
+                        <img src="https://tualatinlife.com/new/wp-content/uploads/2025/04/riverpark-cio.jpg" alt="Community fair" title="Annual Community Fair" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Annual Community Fair</p>
+                    </td>
+                    <td>
+                        <img src="https://ogden_images.s3.amazonaws.com/www.lockhaven.com/images/2025/05/05155823/lock-haven-concert-series-649x840.jpg" alt="Summer concert" title="Summer Concert Series" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>Summer Concert Series</p>
+                    </td>
+                    <td>
+                        <img src="https://www.eventbookings.com/wp-content/uploads/2025/12/A-Complete-Guide-to-Organise-a-Charity-5K-or-Fun-Run-1.jpg" alt="Charity run" title="5K Charity Run" class="event-image" ondblclick="enlargeImage(this)">
+                        <p>5K Charity Run</p>
+                    </td>
+                </tr>
+            </table>
+        </section>
+
+        <!-- 7. Video Invite -->
+        <section>
+            <h2>Video Invitation</h2>
+            <video controls width="500" oncanplay="videoReady()">
+                <!-- You would replace this with your actual video file -->
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <p id="videoStatus"></p>
+        </section>
+
+        <!-- 5. Event Registration Form -->
+        <section id="register">
+            <h2>Event Registration</h2>
+            <form id="eventForm" onsubmit="return showConfirmation()">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="e.g., John Doe" required autofocus>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" placeholder="e.g., john.doe@example.com" required>
+
+                <!-- 6. onblur event for phone validation -->
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="e.g., 123-456-7890" onblur="validatePhone()">
+
+                <label for="eventDate">Event Date:</label>
+                <input type="date" id="eventDate" name="eventDate" required>
+
+                <!-- 6. onchange event to display fee -->
+                <label for="eventType">Event Type:</label>
+                <select id="eventType" name="eventType" onchange="displayFee()">
+                    <option value="fair">Community Fair ($10)</option>
+                    <option value="concert">Summer Concert ($25)</option>
+                    <option value="run">5K Charity Run ($30)</option>
+                </select>
+                <p>Event Fee: <output id="eventFee" for="eventType">$10</output></p>
+
+                <!-- 6. onkeyup to count characters -->
+                <label for="message">Feedback Message:</label>
+                <textarea id="message" name="message" rows="4" placeholder="Any special requests?" onkeyup="countChars()"></textarea>
+                <p>Character Count: <span id="charCount">0</span></p>
+
+                <!-- 6. onclick event handled by the form's onsubmit -->
+                <button type="submit">Register</button>
+                <output name="confirmation" id="confirmationMessage"></output>
+            </form>
+        </section>
+
+        <!-- 8. Saving User Preferences -->
+        <section>
+            <h2>User Preferences</h2>
+            <button id="clearPrefs">Clear Saved Preferences</button>
+        </section>
+
+        <!-- 9. Geolocation -->
+        <section id="contact">
+            <h2>Find Events Near You</h2>
+            <button id="findEvents">Find Nearby Events</button>
+            <p id="geoStatus"></p>
+        </section>
+
+    </main>
+
+    <!-- 1. Footer Section -->
+    <footer>
+        <p>&copy; 2026 Local Community Council. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // 10. Use the Console tab in DevTools to see these logs.
+        console.log("Page script loaded.");
+
+        // 6. Event Handling
+        function validatePhone() {
+            const phoneInput = document.getElementById('phone');
+            const phonePattern = /^\d{3}-\d{3}-\d{4}$/;
+            if (!phonePattern.test(phoneInput.value) && phoneInput.value !== '') {
+                alert('Please enter a valid phone number in the format 123-456-7890.');
+            }
+            console.log('Phone field blurred. Validation checked.'); // Debugging log
+        }
+
+        function displayFee() {
+            const eventType = document.getElementById('eventType').value;
+            const fees = { fair: '$10', concert: '$25', run: '$30' };
+            document.getElementById('eventFee').value = fees[eventType];
+            console.log(`Event type changed to: ${eventType}`); // Debugging log
+        }
+
+        function showConfirmation() {
+            const name = document.getElementById('name').value;
+            const confirmationMsg = document.getElementById('confirmationMessage');
+            confirmationMsg.value = `Thank you, ${name}! Your registration is confirmed.`;
+            console.log('Form submitted. Confirmation shown.'); // Debugging log
+            // Add a breakpoint on the line above to inspect variables.
+            return false; // Prevent actual form submission for this example
+        }
+
+        function enlargeImage(img) {
+            const isEnlarged = img.style.transform === 'scale(1.5)';
+            img.style.transform = isEnlarged ? 'scale(1.0)' : 'scale(1.5)';
+            console.log(`Image dblclicked. Enlarged: ${!isEnlarged}`); // Debugging log
+        }
+
+        function countChars() {
+            const messageLength = document.getElementById('message').value.length;
+            document.getElementById('charCount').textContent = messageLength;
+        }
+
+        // 7. Media Events
+        function videoReady() {
+            document.getElementById('videoStatus').textContent = "Video is ready to play.";
+            console.log('Video can play now.'); // Debugging log
+        }
+
+        window.onbeforeunload = function() {
+            const message = document.getElementById('message').value;
+            if (message.length > 0) {
+                return "You have unsaved changes in the form. Are you sure you want to leave?";
+            }
+        };
+
+        // 8. localStorage and sessionStorage
+        const eventTypeSelect = document.getElementById('eventType');
+        const clearPrefsButton = document.getElementById('clearPrefs');
+
+        // On change, save to localStorage
+        eventTypeSelect.addEventListener('change', () => {
+            localStorage.setItem('preferredEvent', eventTypeSelect.value);
+            console.log(`Saved preference to localStorage: ${eventTypeSelect.value}`);
+        });
+
+        // On load, retrieve from localStorage
+        window.addEventListener('load', () => {
+            const savedEvent = localStorage.getItem('preferredEvent');
+            if (savedEvent) {
+                eventTypeSelect.value = savedEvent;
+                displayFee(); // Update the fee display
+                console.log(`Loaded preference from localStorage: ${savedEvent}`);
+            }
+        });
+
+        // Clear preferences
+        clearPrefsButton.addEventListener('click', () => {
+            localStorage.clear();
+            sessionStorage.clear();
+            alert('Your preferences have been cleared.');
+            console.log('localStorage and sessionStorage cleared.');
+        });
+
+        // 9. Geolocation
+        document.getElementById('findEvents').addEventListener('click', () => {
+            const status = document.getElementById('geoStatus');
+            status.textContent = 'Locating…';
+
+            const options = {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0
+            };
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const { latitude, longitude } = position.coords;
+                    status.textContent = `Your coordinates: Latitude ${latitude.toFixed(4)}, Longitude ${longitude.toFixed(4)}`;
+                    console.log('Geolocation success:', position); // Debugging log
+                },
+                (error) => {
+                    let errorMessage = 'An unknown error occurred.';
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = 'Permission for Geolocation was denied.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = 'The request to get user location timed out.';
+                            break;
+                    }
+                    status.textContent = `Error: ${errorMessage}`;
+                    console.error('Geolocation error:', error); // Debugging log
+                },
+                options
+            );
+        });
+    </script>
+
+</body>
+</html>
